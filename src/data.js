@@ -232,7 +232,7 @@ const data: ResumeData = {
   humanLanguages: [
     {
       language: 'German',
-      description: 'I can speak German half-decently, if not fluently',
+      description: 'I can speak German half-decently, though not fluently',
     }
   ],
   honors: [
