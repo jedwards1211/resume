@@ -55,9 +55,6 @@ const styles = {
   },
   title: {
     fontWeight: bold,
-    '&::after': {
-      content: '", "'
-    }
   },
   location: {},
   school: {
@@ -154,7 +151,9 @@ const GenericSection = ({
   data,
   title: sectionTitle,
   classes,
+  titleDelimiter,
 }: GenericSectionProps): React.Element<any> => {
+  titleDelimiter = titleDelimiter || ': '
   const hasTimePeriods = Boolean(data.find(elem => elem.timePeriods))
   return (
     <table cellSpacing={0} cellPadding={0} className={classes.genericSection}>
@@ -165,7 +164,11 @@ const GenericSection = ({
               {index === 0 && sectionTitle}
             </td>
             <td className={classes.centerColumn}>
-              {title && <span className={classes.title}>{title}</span>}
+              {title && (
+                <span className={classes.title}>
+                  {title}{(location || typeof description === 'string') && titleDelimiter}
+                </span>
+              )}
               {location && <span className={classes.location}>{location}</span>}
               {Array.isArray(description) && (
                 <ul className={classes.description}>
@@ -268,10 +271,10 @@ const Resume = ({data, classes}: Props): React.Element<any> => (
         </tr>
       </tbody>
     </table>
-    {data.sections.map(({key, title, type}: SectionListEntry): React.Element<any> => {
+    {data.sections.map(({key, title, type, ...props}: SectionListEntry): React.Element<any> => {
       const Section = type && sectionTypes[type] || GenericSection
       return (
-        <Section key={key} title={title} data={data[key]} classes={classes} />
+        <Section key={key} title={title} data={data[key]} classes={classes} {...props} />
       )
     })}
   </div>

@@ -17,6 +17,7 @@ const data: ResumeData = {
     {
       key: 'experience',
       title: 'Experience',
+      titleDelimiter: ', ',
     },
     {
       key: 'education',
@@ -237,7 +238,7 @@ const data: ResumeData = {
   honors: [
     {
       title: "President's Volunteer Service Award",
-      description: 'For volunteering at Citizen Schools two semesters in a row',
+      description: 'for volunteering at Citizen Schools two semesters in a row',
       timePeriods: [
         {season: 'Spring', year: 2013}
       ]
