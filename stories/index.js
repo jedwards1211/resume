@@ -1,8 +1,10 @@
 import React from 'react'
 import { storiesOf } from '@storybook/react'
-import Hello from '../src/index'
+import Resume from '../src/Resume'
+import data from '../src/data'
 
-storiesOf('react-library-skeleton', module)
-  .add('Hello', () => (
-    <Hello />
+storiesOf('resume', module)
+  .add('Resume', () => (
+    <Resume data={data} />
   ))
+
