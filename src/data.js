@@ -184,7 +184,6 @@ const data: ResumeData = {
     'Java',
     'JavaScript',
     'JOGL',
-    'Meatier',
     'Meteor',
     'Mocha',
     'MongoDB',
