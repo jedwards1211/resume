@@ -134,6 +134,7 @@ const TimePeriods = ({timePeriods}: TimePeriodsProps): React.Element<any> => (
 export type GenericSectionProps = {
   data: Array<GenericEntry>,
   title: string,
+  titleDelimiter?: string,
   classes: Classes,
 }
 
