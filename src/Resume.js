@@ -94,6 +94,10 @@ const styles = {
       width: '1in',
     }
   },
+  tool: {
+    display: 'inline-block',
+    whiteSpace: 'nowrap',
+  },
 }
 
 type Classes = {[name: $Enum<typeof styles>]: string}
@@ -228,20 +232,27 @@ export type ToolsProps = {
 const Tools = ({
   data,
   classes
-}: ToolsProps): React.Element<any> => (
-  <table cellSpacing={0} cellPadding={0} className={classes.genericSection}>
-    <tbody>
+}: ToolsProps): React.Element<any> => {
+  const tools = []
+  data.sort().forEach((tool: string, index: number) => {
+    if (index > 0) tools.push(' • ')
+    tools.push(<span key={index} className={classes.tool}>{tool}</span>)
+  })
+  return (
+    <table cellSpacing={0} cellPadding={0} className={classes.genericSection}>
+      <tbody>
       <tr>
         <td className={classes.leftColumn}>
           Tools
         </td>
         <td className={classes.centerColumn}>
-          {data.sort().join(' • ')}
+          {tools}
         </td>
       </tr>
-    </tbody>
-  </table>
-)
+      </tbody>
+    </table>
+  )
+}
 
 const sectionTypes = {
   education: EducationSection,
