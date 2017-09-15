@@ -59,8 +59,9 @@ const data: ResumeData = {
         'Developed jcore.io webapp, a real-time IoT platform',
         'Developed system to visualize streaming real-time and historical data in the browser in interactive charts with continuous zoom from seconds to decades',
         'Implemented geographic visualizations of real-time data',
-        'Developed webapp for Pason Power to visualize real-time and historical data from their smart energy storage solution, and manage installations',
-        'Developed webapp for The Toy Factory (San Antonio) to automatically schedule orders and monitor production',
+        'Developed webapp for <i>Pason Power</i> to visualize real-time and historical data from their smart energy storage solution, and manage installations',
+        'Developed webapp for <i>The Toy Factory</i> (San Antonio) to automatically schedule orders and monitor production',
+        'Fixed bugs and implemented features in a Python/Django webapp for <i>Triple C Trucking</i> on a contract basis',
         'Strove to automate all routine tasks in our work process',
         'Set up Docker builds, continuous integration, and deployment',
         'Created popular open-source app skeletons for Meteor/Webpack/React',
@@ -90,7 +91,7 @@ const data: ResumeData = {
         }
       ],
       description: [
-        'Implemented multi-leg options trading UI for StreetSmart.com Java Applet',
+        'Implemented multi-leg options trading UI for <i>StreetSmart.com</i> Java Applet',
         'Solved difficult Swing (UI framework) issues',
         'Solved performance problems in option grouping algorithms',
         'Discovered and fixed errors in pre-existing gain/loss calculations',
@@ -108,8 +109,8 @@ const data: ResumeData = {
         }
       ],
       description: [
-        'Developed the Advanced 3D well/seismic data visualization plugin for Enhanced Live Rig View, using Swing and Java 3D',
-        'Conceived and developed GeoCalc SPE, a novel Geosteering application, with elegant custom plotting in Swing',
+        'Developed the Advanced 3D well/seismic data visualization plugin for <i>Enhanced Live Rig View</i>, using Swing and Java 3D',
+        'Conceived and developed <i>GeoCalc SPE</i>, a novel Geosteering application, with elegant custom plotting in Swing',
         'Developed mesh interpolation, extrapolation, splitting, and contour generation algorithms for processing seismic surfaces'
       ]
     }
@@ -135,7 +136,7 @@ const data: ResumeData = {
       title: 'Breakout',
       location: 'a 3D cave survey visualizer with a very innovative UI, using JOGL',
       description: [
-        'Wrote custom shaders to support arbitrary color scales and show distance from hovered point',
+        'Wrote shaders to render arbitrary color scales and show distance from hovered point',
         'Used R-trees to optimize rendering performance and mouse interaction',
         'Used R-trees to adapt zoom and pan sensitivity to camera distance from cave passages',
         'Made labeling algorithm prioritize important stations to reduce clutter on screen',
@@ -170,6 +171,7 @@ const data: ResumeData = {
     'CSS3',
     'Docker',
     'Docker Compose',
+    'Django',
     'ES2015',
     'ES7',
     'ESLint',

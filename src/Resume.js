@@ -40,6 +40,7 @@ const styles = {
   },
   name: {
     fontSize: 24,
+    fontWeight: bold,
   },
   website: {
     '$resume td&': {
@@ -169,7 +170,7 @@ const GenericSection = ({
               {Array.isArray(description) && (
                 <ul className={classes.description}>
                   {description.map((item, index) => (
-                    <li key={index}>{item}</li>
+                    <li key={index}><Description>{item}</Description></li>
                   ))}
                 </ul>
               )}
@@ -231,7 +232,7 @@ const Tools = ({
           Tools
         </td>
         <td className={classes.centerColumn}>
-          {data.join(' • ')}
+          {data.sort().join(' • ')}
         </td>
       </tr>
     </tbody>
