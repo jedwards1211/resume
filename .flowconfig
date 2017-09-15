@@ -2,11 +2,11 @@
 <PROJECT_ROOT>/lib/.*
 .*/node_modules/.*/tests?/.*\.json
 .*/node_modules/fbjs/.*
-<PROJECT_ROOT>/node_modules/jss/.*
+<PROJECT_ROOT>/node_modules/jss/lib/.*
 
 [include]
 ./src
-./test
+./scripts
 
 [libs]
 
@@ -17,4 +17,4 @@ module.name_mapper='.*\.scss$' -> 'empty/object'
 module.name_mapper='.*\.css$' -> 'empty/object'
 esproposal.class_static_fields=enable
 esproposal.class_instance_fields=enable
-suppress_comment= \\(.\\|\n\\)*\\flow-issue
+

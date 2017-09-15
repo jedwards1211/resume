@@ -1,6 +1,7 @@
 // @flow
 
 import React from 'react'
+// $FlowFixMe
 import jss from 'jss'
 import jssNested from 'jss-nested'
 import injectSheet from 'react-jss'
@@ -109,16 +110,17 @@ export type TimePeriodsProps = {
 }
 
 function formatTimePeriod(period: TimePeriod): any {
+  if (typeof period === 'string') return period
   if (period instanceof Date) return period.toLocaleString('en-US', {month: 'short', year: 'numeric'})
-  if (period.start) return (
+  const {start, end, season, year} = (period: any)
+  if (start && end) return (
     <span>
-      {formatTimePeriod(period.start)}<br />
-      to {formatTimePeriod(period.end)}
+      {formatTimePeriod(start)}<br />
+      to {formatTimePeriod(end)}
     </span>
   )
-  if (period.season) return `${period.season} ${period.year}`
-  if (period.year) return String(period.year)
-  return String(period)
+  if (season) return `${season} ${year}`
+  if (year) return String(year)
 }
 
 const TimePeriods = ({timePeriods}: TimePeriodsProps): React.Element<any> => (
@@ -133,15 +135,16 @@ const TimePeriods = ({timePeriods}: TimePeriodsProps): React.Element<any> => (
 
 export type GenericSectionProps = {
   data: Array<GenericEntry>,
+  title: string,
   classes: Classes,
 }
 
 export type DescriptionProps = {
-  children: string,
+  children?: string,
 }
 
 const Description = ({children}: DescriptionProps): React.Element<any> => (
-  children.indexOf('<' >= 0)
+  children && children.indexOf('<') >= 0
     ? <span dangerouslySetInnerHTML={{__html: children}} />
     : <span>{children}</span>
 )
@@ -265,7 +268,7 @@ const Resume = ({data, classes}: Props): React.Element<any> => (
       </tbody>
     </table>
     {data.sections.map(({key, title, type}: SectionListEntry): React.Element<any> => {
-      const Section = sectionTypes[type] || GenericSection
+      const Section = type && sectionTypes[type] || GenericSection
       return (
         <Section key={key} title={title} data={data[key]} classes={classes} />
       )
