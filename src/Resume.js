@@ -37,6 +37,12 @@ const styles = {
     },
     fontFamily: "'Saira Semi Condensed', sans-serif",
     lineHeight: 1.2,
+    '& a': {
+      '@media print': {
+        textDecoration: 'none',
+        color: 'initial',
+      }
+    },
   },
   name: {
     fontSize: 24,
