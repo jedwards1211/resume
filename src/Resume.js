@@ -14,10 +14,16 @@ const bold = 700
 
 const styles = {
   resume: {
+    backgroundColor: 'white',
+    width: '7.5in',
+    marginLeft: 'auto',
+    marginRight: 'auto',
+    '@media not print': {
+      padding: '0.5in',
+      boxShadow: '0 3px 15px rgba(0, 0, 0, 0.5)',
+    },
     '& table': {
-      marginLeft: 'auto',
-      marginRight: 'auto',
-      width: '7.5in',
+      width: '100%',
     },
     '& td': {
       textAlign: 'center',
