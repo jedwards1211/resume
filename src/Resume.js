@@ -270,16 +270,18 @@ const EducationSection = ({
         <tr key={index}>
           {index === 0 &&
             <td className={classes.leftColumn} rowSpan={data.length}>
-              <div className={classes.stickyHeader}>Education</div>
+              Education
             </td>
           }
           <td className={classes.centerColumn}>
-            {school && <div className={`${classes.school} ${classes.stickyHeader}`}>{school}</div>}
+            {school && <div className={classes.school}>{school}</div>}
             {degrees && <span className={classes.degrees}>{degrees.join(', ')}</span>}
           </td>
           <td className={classes.rightColumn}>
-            {timePeriods && <TimePeriods className={classes.stickyHeader} timePeriods={timePeriods} />}
-            {gpa && <div className={classes.gpa}>{gpa}</div>}
+            <div className={classes.stickyHeader}>
+              {timePeriods && <TimePeriods timePeriods={timePeriods} />}
+              {gpa && <div className={classes.gpa}>{gpa}</div>}
+            </div>
           </td>
         </tr>
       ))}
