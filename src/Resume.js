@@ -14,6 +14,7 @@ const bold = 700
 
 const styles = {
   resume: {
+    position: 'relative',
     backgroundColor: 'white',
     width: '7.5in',
     marginLeft: 'auto',
@@ -59,8 +60,26 @@ const styles = {
       textAlign: 'center',
     }
   },
+  contactNavbar: {
+    zIndex: 500,
+    marginBottom: '0.1in',
+    '@media not print': {
+      position: 'sticky',
+      background: 'white',
+      top: 0,
+      marginLeft: '-0.5in',
+      marginRight: '-0.5in',
+      marginTop: '-0.1in',
+      paddingLeft: '0.5in',
+      paddingRight: '0.5in',
+      paddingTop: '0.1in',
+      paddingBottom: '0.1in',
+      boxShadow: '0 10px 10px -5px white',
+    },
+  },
+  contactNavbarStuck: {
+  },
   contact: {
-    marginBottom: 15,
     '& tr:first-child > td:last-child': {
       textAlign: 'right',
     }
@@ -96,6 +115,22 @@ const styles = {
   },
   leftColumn: {
     width: '1in',
+    position: 'relative',
+  },
+  stickyHeader: {
+    '@media not print': {
+      background: 'white',
+      position: 'sticky',
+      boxShadow: '0 5px 5px white',
+      top: '0.76in',
+    },
+    '$centerColumn &': {
+      '@media not print': {
+        top: '0.66in',
+        marginTop: '-0.1in',
+        paddingTop: '0.1in',
+      }
+    }
   },
   centerColumn: {
   },
@@ -120,6 +155,7 @@ export type Props = {
 }
 
 export type TimePeriodsProps = {
+  className?: string,
   timePeriods: Array<TimePeriod>,
 }
 
@@ -137,8 +173,8 @@ function formatTimePeriod(period: TimePeriod): any {
   if (year) return String(year)
 }
 
-const TimePeriods = ({timePeriods}: TimePeriodsProps): React.Element<any> => (
-  <div>
+const TimePeriods = ({className, timePeriods}: TimePeriodsProps): React.Element<any> => (
+  <div className={className}>
     {timePeriods.map((period, index) => (
       <span key={index}>
         {formatTimePeriod(period)}
@@ -177,16 +213,22 @@ const GenericSection = ({
       <tbody>
         {data.map(({title, location, description, timePeriods}, index) => (
           <tr key={index}>
-            <td className={classes.leftColumn}>
-              {index === 0 && sectionTitle}
-            </td>
+            {index === 0 &&
+              <td className={classes.leftColumn} rowSpan={data.length}>
+                <div className={classes.stickyHeader}>{sectionTitle}</div>
+              </td>
+            }
             <td className={classes.centerColumn}>
-              {title && (
-                <span className={classes.title}>
-                  {title}{(location || typeof description === 'string') && titleDelimiter}
-                </span>
-              )}
-              {location && <span className={classes.location}>{location}</span>}
+              {(title || location) &&
+                <div className={Array.isArray(description) ? classes.stickyHeader : undefined}>
+                  {title && (
+                    <span className={classes.title}>
+                      {title}{(location || typeof description === 'string') && titleDelimiter}
+                    </span>
+                  )}
+                  {location && <span className={classes.location}>{location}</span>}
+                </div>
+              }
               {Array.isArray(description) && (
                 <ul className={classes.description}>
                   {description.map((item, index) => (
@@ -196,9 +238,16 @@ const GenericSection = ({
               )}
               {typeof description === 'string' && <Description>{description}</Description>}
             </td>
-            {hasTimePeriods && <td className={classes.rightColumn}>
-              {timePeriods && <TimePeriods timePeriods={timePeriods} />}
-            </td>}
+            {hasTimePeriods &&
+              <td className={classes.rightColumn}>
+                {timePeriods &&
+                  <TimePeriods
+                      className={Array.isArray(description) ? classes.stickyHeader : undefined}
+                      timePeriods={timePeriods}
+                  />
+                }
+              </td>
+            }
           </tr>
         ))}
       </tbody>
@@ -219,15 +268,17 @@ const EducationSection = ({
     <tbody>
       {data.map(({school, degrees, gpa, timePeriods}, index) => (
         <tr key={index}>
-          <td className={classes.leftColumn}>
-            {index === 0 && 'Education'}
-          </td>
+          {index === 0 &&
+            <td className={classes.leftColumn} rowSpan={data.length}>
+              <div className={classes.stickyHeader}>Education</div>
+            </td>
+          }
           <td className={classes.centerColumn}>
-            {school && <div className={classes.school}>{school}</div>}
+            {school && <div className={`${classes.school} ${classes.stickyHeader}`}>{school}</div>}
             {degrees && <span className={classes.degrees}>{degrees.join(', ')}</span>}
           </td>
           <td className={classes.rightColumn}>
-            {timePeriods && <TimePeriods timePeriods={timePeriods} />}
+            {timePeriods && <TimePeriods className={classes.stickyHeader} timePeriods={timePeriods} />}
             {gpa && <div className={classes.gpa}>{gpa}</div>}
           </td>
         </tr>
@@ -255,7 +306,7 @@ const Tools = ({
       <tbody>
       <tr>
         <td className={classes.leftColumn}>
-          Tools
+          <div className={classes.stickyHeader}>Tools</div>
         </td>
         <td className={classes.centerColumn}>
           {tools}
@@ -271,38 +322,45 @@ const sectionTypes = {
   tools: Tools,
 }
 
-const Resume = ({data, classes}: Props): React.Element<any> => (
-  <div className={classes.resume}>
-    <table cellPadding={0} cellSpacing={0} className={classes.contact}>
-      <tbody>
-        <tr>
-          <td rowSpan={2}>
-            <div>{data.address.street}</div>
-            <div>{data.address.city}, {data.address.state} {data.address.zip}</div>
-          </td>
-          <td className={classes.name}>
-            {data.name}
-          </td>
-          <td rowSpan={2}>
-            <div>{data.email}</div>
-            <div>{data.phone}</div>
-          </td>
-        </tr>
-        <tr>
-          <td className={classes.website}>
-            <a href={data.website}>{data.website}</a>
-          </td>
-        </tr>
-      </tbody>
-    </table>
-    {data.sections.map(({key, title, type, ...props}: SectionListEntry): React.Element<any> => {
-      const Section = type && sectionTypes[type] || GenericSection
-      return (
-        <Section key={key} title={title} data={data[key]} classes={classes} {...props} />
-      )
-    })}
-  </div>
-)
+class Resume extends React.Component<void, Props, void> {
+  render(): React.Element<any> {
+    const {classes, data} = this.props
+    return (
+      <div className={classes.resume}>
+        <div className={classes.contactNavbar}>
+          <table cellPadding={0} cellSpacing={0} className={classes.contact}>
+            <tbody>
+              <tr>
+                <td rowSpan={2}>
+                  <div>{data.address.street}</div>
+                  <div>{data.address.city}, {data.address.state} {data.address.zip}</div>
+                </td>
+                <td className={classes.name}>
+                  {data.name}
+                </td>
+                <td rowSpan={2}>
+                  <div>{data.email}</div>
+                  <div>{data.phone}</div>
+                </td>
+              </tr>
+              <tr>
+                <td className={classes.website}>
+                  <a href={data.website}>{data.website}</a>
+                </td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+        {data.sections.map(({key, title, type, ...props}: SectionListEntry): React.Element<any> => {
+          const Section = type && sectionTypes[type] || GenericSection
+          return (
+            <Section key={key} title={title} data={data[key]} classes={classes} {...props} />
+          )
+        })}
+      </div>
+    )
+  }
+}
 
 export default injectSheet(styles)(Resume)
 

@@ -38,7 +38,6 @@ const staticCss = `
   }
 }
 `
-
 console.log('<!DOCTYPE html>')
 console.log(renderToString(
   <html>
@@ -53,4 +52,3 @@ console.log(renderToString(
     <body dangerouslySetInnerHTML={{__html: body}} />
   </html>
 ))
-

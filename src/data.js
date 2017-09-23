@@ -156,7 +156,7 @@ const data: ResumeData = {
       description: 'a Java/Swing library that draws arbitrary-dimensional objects',
     },
     {
-      description: 'Implemented a user level thread library and a reliable filesystem for Operating Systems class, using C++'
+      description: 'Implemented user level threads and reliable filesystem for Operating Systems class in C++'
     },
     {
       description: 'Taught a friend with no programming experience to write and debug RhinoScripts that automated 3D modeling for his architectural design project'
