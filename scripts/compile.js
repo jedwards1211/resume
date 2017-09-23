@@ -25,6 +25,7 @@ const staticCss = `
   html {
     padding: 10px;
     background: linear-gradient(to bottom right, #eee, #ddd);
+    background-attachment: fixed;
   }
 }
 @media print {
