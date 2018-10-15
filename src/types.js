@@ -33,7 +33,7 @@ export type ResumeData = {
     zip: string,
   },
   email: string,
-  website: string,
+  website?: ?string,
   phone: string,
   sections: Array<SectionListEntry>,
   education: Array<EducationEntry>,

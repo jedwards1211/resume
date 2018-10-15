@@ -5,14 +5,14 @@ import type {ResumeData} from "./types"
 const data: ResumeData = {
   name: 'Andy Edwards',
   address: {
-    street: '2601 Penny Ln, Apt 111',
+    street: '401 Little Texas Ln, Apt 2012',
     city: 'Austin',
     state: 'TX',
-    zip: '78757',
+    zip: '78745',
   },
   email: 'jedwards@fastmail.com',
   phone: '817-266-1419',
-  website: 'http://helloandy.xyz',
+  website: 'https://github.com/jedwards1211',
   sections: [
     {
       key: 'experience',
@@ -38,6 +38,10 @@ const data: ResumeData = {
       title: 'Human Languages',
     },
     {
+      key: 'volunteering',
+      title: 'Volunteering',
+    },
+    {
       key: 'honors',
       title: 'Honors',
     },
@@ -57,7 +61,7 @@ const data: ResumeData = {
         },
       ],
       description: [
-        'Developed jcore.io webapp, a real-time IoT platform',
+        'Developed clarity.jcore.io, a real-time IoT platform',
         'Developed system to visualize streaming real-time and historical data in the browser in interactive charts with continuous zoom from seconds to decades',
         'Implemented geographic visualizations of real-time data',
         'Developed webapp for <i>Pason Power</i> to visualize real-time and historical data from their smart energy storage solution, and manage installations',
@@ -156,14 +160,15 @@ const data: ResumeData = {
       description: 'a Java/Swing library that draws arbitrary-dimensional objects',
     },
     {
-      description: 'Implemented user level threads and reliable filesystem for Operating Systems class in C++'
+      description: 'Implemented user level threads and reliable filesystem for Operating Systems class in C++',
     },
     {
-      description: 'Taught a friend with no programming experience to write and debug RhinoScripts that automated 3D modeling for his architectural design project'
+      description: 'Taught a friend with no programming experience to write and debug RhinoScripts that automated 3D modeling for his architectural design project',
     }
   ],
   tools: [
     'AWS',
+    'CloudFormation',
     'Babel',
     'Bash',
     'C/C++',
@@ -173,6 +178,7 @@ const data: ResumeData = {
     'Docker',
     'Docker Compose',
     'Django',
+    'DynamoDB',
     'ES2015',
     'ES7',
     'ESLint',
@@ -187,22 +193,36 @@ const data: ResumeData = {
     'Meteor',
     'Mocha',
     'MongoDB',
+    'MySQL',
     'NodeJS',
     'NPM',
     'OpenGL',
     'Python',
+    'PostgreSQL',
     'Qt',
     'React',
     'Redux',
     'React Router',
-    'RethinkDB',
-    'SQL',
+    'Sequelize',
     'Travis CI',
     'Twitter Bootstrap',
     'Webdriver.io',
     'Webpack',
   ],
   volunteering: [
+    {
+      title: 'Webmaster',
+      location: 'Texas Cave Management Association',
+      timePeriods: [
+        {
+          start: {year: 2018},
+          end: 'Present',
+        },
+      ],
+      description: [
+        'Managing and adding to WordPress site created by previous webmaster',
+      ],
+    },
     {
       title: 'Treasurer and Webmaster',
       location: 'Detroit Urban Grotto',
@@ -277,4 +297,3 @@ const data: ResumeData = {
 }
 
 module.exports = data
-

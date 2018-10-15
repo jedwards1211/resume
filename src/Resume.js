@@ -58,7 +58,7 @@ const styles = {
   website: {
     '$resume td&': {
       textAlign: 'center',
-    }
+    },
   },
   contactNavbar: {
     zIndex: 500,
@@ -101,13 +101,15 @@ const styles = {
   description: {},
   genericSection: {
     paddingBottom: 10,
-    '& td:first-child': {
+    '& td > :first-child': {
       fontWeight: 'normal',
-      fontStyle: 'italic',
       paddingBottom: 5,
     },
     '& td': {
       paddingBottom: 5,
+    },
+    '& td$hasInlineDescription': {
+      paddingBottom: 10,
     },
     '& td$centerColumn': {
       textAlign: 'justify',
@@ -116,6 +118,11 @@ const styles = {
   leftColumn: {
     width: '1in',
     position: 'relative',
+  },
+  inlineHeader: {
+    display: 'inline',
+  },
+  hasInlineDescription: {
   },
   stickyHeader: {
     '@media not print': {
@@ -176,9 +183,9 @@ function formatTimePeriod(period: TimePeriod): any {
 const TimePeriods = ({className, timePeriods}: TimePeriodsProps): React.Element<any> => (
   <div className={className}>
     {timePeriods.map((period, index) => (
-      <span key={index}>
+      <div key={index}>
         {formatTimePeriod(period)}
-      </span>
+      </div>
     ))}
   </div>
 )
@@ -218,9 +225,9 @@ const GenericSection = ({
                 <div className={classes.stickyHeader}>{sectionTitle}</div>
               </td>
             }
-            <td className={classes.centerColumn}>
+            <td className={`${classes.centerColumn} ${typeof description === 'string' ? classes.hasInlineDescription : ''}`}>
               {(title || location) &&
-                <div className={Array.isArray(description) ? classes.stickyHeader : undefined}>
+                <div className={Array.isArray(description) ? classes.stickyHeader : classes.inlineHeader}>
                   {title && (
                     <span className={classes.title}>
                       {title}{(location || typeof description === 'string') && titleDelimiter}
@@ -347,7 +354,7 @@ class Resume extends React.Component<void, Props, void> {
               </tr>
               <tr>
                 <td className={classes.website}>
-                  <a href={data.website}>{data.website}</a>
+                  {data.website && <a href={data.website}>{data.website}</a>}
                 </td>
               </tr>
             </tbody>
@@ -365,4 +372,3 @@ class Resume extends React.Component<void, Props, void> {
 }
 
 export default injectSheet(styles)(Resume)
-
