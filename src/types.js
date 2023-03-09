@@ -1,8 +1,8 @@
 // @flow
 
-export type Dateish = Date | string | {season?: string, year: number}
+export type Dateish = Date | string | { season?: string, year: number }
 
-export type TimePeriod = Dateish | {start: Dateish, end: Dateish}
+export type TimePeriod = Dateish | { start: Dateish, end: Dateish }
 
 export type SectionListEntry = {
   key: string,
@@ -27,10 +27,10 @@ export type EducationEntry = {
 export type ResumeData = {
   name: string,
   address: {
-    street: string,
+    street?: string,
     city: string,
     state: string,
-    zip: string,
+    zip?: string,
   },
   email: string,
   website?: ?string,
